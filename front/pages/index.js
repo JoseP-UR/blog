@@ -2,6 +2,6 @@ import { Box } from '@chakra-ui/react'
 
 export default function Home() {
   return (
-    <Box>oi</Box>
+    <Box>hi</Box>
   )
 }

@@ -9,7 +9,7 @@ function MyApp({ Component, pageProps }) {
         <GridItem>
           <Header />
         </GridItem>
-        <GridItem bg='gray.50'>
+        <GridItem>
           <Component {...pageProps} />
         </GridItem>
       </Grid>

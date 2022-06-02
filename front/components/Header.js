@@ -50,6 +50,9 @@ export default function Header() {
                             type={'text'}
                             backgroundColor={'whiteAlpha.900'}
                             placeholder='Search'
+                            _placeholder={{
+                                color: 'gray.500',
+                            }}
                         />
                         <InputRightElement width='4.5rem'>
                             <Button h='1.75rem' size='sm' backgroundColor={'blackAlpha.700'} color={'whiteAlpha.900'}>
@@ -57,8 +60,21 @@ export default function Header() {
                             </Button>
                         </InputRightElement>
                     </InputGroup>
-                    <Button h='1.75rem' size='sm' backgroundColor={'blackAlpha.700'} color={'whiteAlpha.900'} onClick={toggleColorMode}>
-                        <SearchIcon />
+                    <Button
+                        w={'4.5rem'}
+                        size='sm'
+                        ml={'1em'}
+                        backgroundColor={'whiteAlpha.900'}
+                        color={'whiteAlpha.900'}
+                        onClick={toggleColorMode}
+                        _hover={{ backgroundColor: 'whiteAlpha.900', color: 'blackAlpha.900' }}
+                    >
+                        <Box
+                            backgroundColor={colorMode === 'light' ? 'blue.500' : 'green.500'}
+                            borderRadius={'full'}
+                            h={'1rem'}
+                            w={'1rem'}
+                        />
                     </Button>
                 </Box>
             </GridItem>

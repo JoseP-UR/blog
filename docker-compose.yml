@@ -12,45 +12,54 @@ services:
       - nestapp
       - nextapp
 
-  postgresql:
-    image: postgres:14.1-alpine
-    restart: always
-    environment:
-      - POSTGRES_USER=admin
-      - POSTGRES_PASSWORD=admin
-    ports:
-      - '5432:5432'
-    volumes: 
-      - ./db:/var/lib/postgresql/data
-  
   nextapp:
+    image: node:latest
     container_name: nextapp
-    build: ./front
     volumes:
-      - ./front:/app/
+      - ./front:/front/
+    working_dir: /front/
+    entrypoint: /front/entrypoint.sh
     environment:
       - CHOKIDAR_USEPOLLING=true
     depends_on:
       - nestapp
 
   nestapp:
-    build: ./back
+    image: node:latest
     container_name: nestapp
     volumes:
-      - ./back:/app
+      - ./back:/back/
+    working_dir: /back/
+    entrypoint: /back/entrypoint.sh
     environment:
       - CHOKIDAR_USEPOLLING=true
     depends_on:
-      - postgresql
+      - mysql
     restart: always
 
-  phppgadmin:
-    container_name: phppgadmin
-    image: docker.io/bitnami/phppgadmin:7
-    environment:
-      - DATABASE_HOST=postgresql
+  mysql:
+    container_name: mysql
+    build: ./docker/mysql/
     ports:
-      - '8080:8080'
-      - '8443:8443'
+      - "3306:3306"
+    volumes:
+      - ./mysql:/var/lib/mysql
+    environment:
+      MYSQL_USER: "admin"
+      MYSQL_PASSWORD: "admin"
+  
+  phpmyadmin:
+    container_name: phpmyadmin
+    image: phpmyadmin/phpmyadmin
+    links:
+      - "mysql:mysql"
+    ports:
+      - "8080:80"
+    volumes:
+      - ./phpmyadmin:/var/www/html/phpmyadmin
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
     depends_on:
-      - postgresql
+      - mysql
