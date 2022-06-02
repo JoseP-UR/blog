@@ -9,11 +9,15 @@ import {
     InputGroup,
     InputRightElement,
     useColorModeValue,
-    useColorMode
+    useColorMode,
+    Spacer,
+    LinkOverlay,
+    Link
 } from '@chakra-ui/react'
 import {
     SearchIcon
 } from '@chakra-ui/icons'
+import { theme } from '../theme'
 
 
 
@@ -26,21 +30,30 @@ export default function Header() {
         borderRadius: '0',
         height: '100%',
         color: "whiteAlpha.900",
-        _hover: { backgroundColor: 'whiteAlpha.900', color: 'blackAlpha.900' }
+        display: 'flex',
+        alignItems: 'center',
+        _hover: { backgroundColor: 'whiteAlpha.700', color: 'blackAlpha.900' }
     }
 
 
     return (
         <Grid h={'100%'} templateRows={'30% auto'}>
-            <GridItem bg={topBg} width={'100%'} margin="0 0 0 auto">
+            <GridItem bg={topBg} width={'100%'} margin="0 0 0 auto" display={'flex'} flexDirection="row" alignItems="center">
                 <Button colorScheme={'green'} sx={topMenuButtonStyle} variant={'ghost'}>Home</Button>
                 <Button colorScheme={'green'} sx={topMenuButtonStyle} variant={'ghost'}>About</Button>
+                <Spacer />
+                {theme.config.downloadButton ?
+                    (<Link sx={topMenuButtonStyle} padding="0.5em"  href="https://github.com/JoseP-UR/blog" target={'_blank'}
+                    >
+                      Download source for this
+                    </Link>)
+                    : null}
             </GridItem>
             <GridItem bg={botBg} display={'flex'} alignItems="center" justifyContent={'space-around'}>
 
                 <Box display={'flex'} alignItems="center" width={'auto'}>
-                    <Avatar name="Jose Paulo Urives Rosa" src="https://i.pravatar.cc/300" />
-                    <Text display={['none', 'none', 'inline', 'inline']} ml={'1em'} color={'whiteAlpha.900'} fontSize={'2xl'}>Jose Paulo Urives Rosa</Text>
+                    <Avatar name={theme.config.blogTitle} src={theme.config.avatar} />
+                    <Text display={['none', 'none', 'inline', 'inline']} ml={'1em'} color={'whiteAlpha.900'} fontSize={'2xl'}>{theme.config.blogTitle}</Text>
                 </Box>
 
                 <Box display={'flex'} width={'auto'} alignItems="center" >
