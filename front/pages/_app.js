@@ -1,6 +1,7 @@
 import { ChakraProvider, Grid, GridItem, localStorageManager } from '@chakra-ui/react'
 import theme from '../theme'
 import Header from '../components/Header'
+import '../styles/animations.css'
 
 function MyApp({ Component, pageProps }) {
   return (

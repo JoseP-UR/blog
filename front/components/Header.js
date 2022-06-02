@@ -87,6 +87,10 @@ export default function Header() {
                             borderRadius={'full'}
                             h={'1rem'}
                             w={'1rem'}
+                            sx={{
+                                animationName: 'ballCloseOpen',
+                                animationDuration: '1s',
+                            }}
                         />
                     </Button>
                 </Box>
