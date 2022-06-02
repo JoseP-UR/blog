@@ -2,5 +2,13 @@
 
 environment="back"
 npmCommand="npm run start"
+DIRECTORY="/$environment"
 
-cd /$environment/ && npm install && npm ci && $npmCommand
+if [[ -d "$DIRECTORY/node_modules" ]]
+    then
+        echo "node_modules found, running $npmCommand."
+        cd /$environment/ && $npmCommand
+    else
+        echo "node_modules not found, running install commands"
+        cd /$environment/ && npm install && npm ci && $npmCommand
+fi
