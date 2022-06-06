@@ -8,6 +8,18 @@ export const theme = {
         downloadButton: true,
         initialColorMode: 'light',
         useSystemColorMode: false,
+        header: {
+            menu: [
+                {
+                    name: 'Home',
+                    path: '/'
+                },
+                {
+                    name: 'About',
+                    path: '/about'
+                },
+            ]
+        }
     },
     fonts: {
     },

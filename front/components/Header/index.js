@@ -9,15 +9,13 @@ import {
     InputGroup,
     InputRightElement,
     useColorModeValue,
-    useColorMode,
-    Spacer,
-    LinkOverlay,
-    Link
+    useColorMode
 } from '@chakra-ui/react'
 import {
     SearchIcon
 } from '@chakra-ui/icons'
-import { theme } from '../theme'
+import { theme } from '../../theme'
+import UpperHeader from './upperHeader'
 
 
 
@@ -26,28 +24,10 @@ export default function Header() {
     const topBg = useColorModeValue('green.600', 'blue.600')
     const botBg = useColorModeValue('green.500', 'blue.500')
 
-    const topMenuButtonStyle = {
-        borderRadius: '0',
-        height: '100%',
-        color: "whiteAlpha.900",
-        display: 'flex',
-        alignItems: 'center',
-        _hover: { backgroundColor: 'whiteAlpha.700', color: 'blackAlpha.900' }
-    }
-
-
     return (
         <Grid h={'100%'} templateRows={'30% auto'}>
             <GridItem bg={topBg} width={'100%'} margin="0 0 0 auto" display={'flex'} flexDirection="row" alignItems="center">
-                <Button colorScheme={'green'} sx={topMenuButtonStyle} variant={'ghost'}>Home</Button>
-                <Button colorScheme={'green'} sx={topMenuButtonStyle} variant={'ghost'}>About</Button>
-                <Spacer />
-                {theme.config.downloadButton ?
-                    (<Link sx={topMenuButtonStyle} padding="0.5em"  href="https://github.com/JoseP-UR/blog" target={'_blank'}
-                    >
-                      Download source for this
-                    </Link>)
-                    : null}
+                <UpperHeader />
             </GridItem>
             <GridItem bg={botBg} display={'flex'} alignItems="center" justifyContent={'space-around'}>
 
