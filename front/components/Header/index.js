@@ -9,7 +9,8 @@ import {
     InputGroup,
     InputRightElement,
     useColorModeValue,
-    useColorMode
+    useColorMode,
+    Tooltip
 } from '@chakra-ui/react'
 import {
     SearchIcon
@@ -53,26 +54,24 @@ export default function Header() {
                             </Button>
                         </InputRightElement>
                     </InputGroup>
-                    <Button
-                        w={'4.5rem'}
-                        size='sm'
-                        ml={'1em'}
-                        backgroundColor={'whiteAlpha.900'}
-                        color={'whiteAlpha.900'}
-                        onClick={toggleColorMode}
-                        _hover={{ backgroundColor: 'whiteAlpha.900', color: 'blackAlpha.900' }}
-                    >
-                        <Box
-                            backgroundColor={colorMode === 'light' ? 'blue.500' : 'green.500'}
-                            borderRadius={'full'}
-                            h={'1rem'}
-                            w={'1rem'}
-                            sx={{
-                                animationName: 'ballCloseOpen',
-                                animationDuration: '1s',
-                            }}
-                        />
-                    </Button>
+                    <Tooltip label="Toggle color mode" placement="bottom">
+                        <Button
+                            w={'3rem'}
+                            size='sm'
+                            ml={'1em'}
+                            backgroundColor={'whiteAlpha.900'}
+                            color={'whiteAlpha.900'}
+                            onClick={toggleColorMode}
+                            _hover={{ backgroundColor: 'whiteAlpha.900', color: 'blackAlpha.900' }}
+                        >
+                            <Box
+                                backgroundColor={colorMode === 'light' ? 'blue.500' : 'green.500'}
+                                borderRadius={'full'}
+                                h={'1rem'}
+                                w={'1rem'}
+                            />
+                        </Button>
+                    </Tooltip>
                 </Box>
             </GridItem>
         </Grid>

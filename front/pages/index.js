@@ -2,7 +2,7 @@ import { Grid, GridItem } from '@chakra-ui/react'
 import PostItem from '../components/PostItem'
 export default function Home(props) {
   return (
-    <Grid height={'100vh'} templateColumns={['auto', 'auto 35%']}>
+    <Grid height={'100vh'} templateColumns={['auto 15%', 'auto 35%']}>
       <GridItem>
         {
           props.posts.map(post => (
