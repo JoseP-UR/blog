@@ -16,7 +16,7 @@ export default function UpperHeader() {
         _hover: { backgroundColor: 'whiteAlpha.700', color: 'blackAlpha.900' }
     }
 
-    function generateMenu() {
+    function genNavButtons() {
         return theme.config.header.menu.map((item, index) => {
             return (
                 <NextLink href={item.path} key={index} passHref>
@@ -26,18 +26,24 @@ export default function UpperHeader() {
         })
     }
 
+    function insertExternalLink(href, label) {
+        if (theme.config.downloadButton) {
+            return (
+                <Link sx={topMenuButtonStyle} padding="0.5em" href={href} target={'_blank'}
+                >
+                    {label}
+                </Link>
+            )
+        }
+
+        return null
+    }
+
     return (
         <>
-            {generateMenu()}
+            {genNavButtons()}
             <Spacer />
-            {
-                theme.config.downloadButton ?
-                    (<Link sx={topMenuButtonStyle} padding="0.5em" href="https://github.com/JoseP-UR/blog" target={'_blank'}
-                    >
-                        Download source for this
-                    </Link>)
-                    : null
-            }
+            {insertExternalLink("https://github.com/JoseP-UR/blog", "Download source for this")}
         </>
     )
 }
