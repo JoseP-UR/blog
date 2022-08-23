@@ -1,7 +1,7 @@
 #!/bin/bash
 
-environment="back"
-npmCommand="npm run start"
+environment="app"
+npmCommand="npm run dev"
 DIRECTORY="/$environment"
 
 if ! [[ -d "$DIRECTORY/node_modules" ]]
